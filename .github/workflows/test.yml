@@ -8,24 +8,20 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploying to remote server
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2
+      
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.0
         with:
-          node-version: 16.x
+          ssh-private-key: ${{ secrets.PRIVATE_KEY }}
 
-      - name: My Action
+      - name: SSH and Deploy
         uses: ./.github/actions/test
         with:
           host: 143.110.240.100
-          username: root
-          key: ${{ secrets.PRIVATE_KEY }}
+          username: ${{ secrets.USERNAME }}
           port: 22
-
-      - name: Deploy code to server
-        run: |
-          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} 
+          script: |
+            echo "Logged in to server"
