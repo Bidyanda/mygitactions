@@ -11,7 +11,7 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
       - name: My Action
-        uses: ./.github/actions/test
+        uses: ./.github/workflows/test.yml@main
         with:
           remote_path: '~/var/www/bidyanda1/html/Bidyanda1'
           host: '143.110.240.100'
