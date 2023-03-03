@@ -1,21 +1,31 @@
-name: SSH into server
-'on':
+name: SSH Deploy
+
+on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    name: Deploying to remote server
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-      - name: SSH into server
-        uses: Bidyanda/mygitactions@main
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
         with:
-          host: '143.110.240.100'
-          username: 'root'
-          key: '${{ secrets.PRIVATE_KEY }}'
-          port: '22'
-          script: |
-            echo "Logged in to server"
-            ls -la
+          node-version: 16.x
+
+      - name: My Action
+        uses: ./.github/actions/test
+        with:
+          host: 143.110.240.100
+          username: root
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+
+      - name: Deploy code to server
+        run: |
+          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} 
