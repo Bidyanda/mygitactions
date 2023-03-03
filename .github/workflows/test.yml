@@ -10,7 +10,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: SSH into server
-        uses: appleboy/ssh-action@master
+        uses: Bidyanda/ssh-test@main
         with:
           host: '143.110.240.100'
           username: 'root'
