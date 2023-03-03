@@ -10,7 +10,7 @@ jobs:
       - name: Install SSH
         run: sudo apt-get install -y ssh
       - name: Log in to server
-        uses: Bidyanda/mygitactions@master
+        uses: Bidyanda/mygitactions@main
         with:
           host: '143.110.240.100'
           username: 'root'
