@@ -1,8 +1,21 @@
-name: hello-world
-'on': push
+name: SSH into server
+'on':
+  push:
+    branches:
+      - main
 jobs:
-  my-job:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: my-step
-        run: echo "Hello World!"
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: SSH into server
+        uses: appleboy/ssh-action@master
+        with:
+          host: '143.110.240.100'
+          username: 'root'
+          key: '${{ secrets.PRIVATE_KEY }}'
+          port: '22'
+          script: |
+            echo "Logged in to server"
+            ls -la
