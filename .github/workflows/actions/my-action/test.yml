@@ -19,4 +19,4 @@ jobs:
           password: 'gLobizs@123s'
           port: 22
       - name: Print message
-        run: echo "Deployment successfully!"
+        run: echo "Deployment successfully  !"
