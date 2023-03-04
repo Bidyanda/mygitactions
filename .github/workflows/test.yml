@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-      - name: My Action
-        uses: ./.github/workflows/test.yml@main
+      - name: Run local action
+        uses: ./.github/actions/test
         with:
           remote_path: '~/var/www/bidyanda1/html/Bidyanda1'
           host: '143.110.240.100'
