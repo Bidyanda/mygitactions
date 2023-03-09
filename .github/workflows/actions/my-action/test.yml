@@ -1,0 +1,22 @@
+name: Deploy to Server
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploying to server
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Run local action
+        uses: ./.github/actions/test
+        with:
+          remote_path: '~/var/www/bidyanda1/html/Bidyanda1'
+          host: '143.110.240.100'
+          username: 'root'
+          password: 'gLobizs@123s'
+          port: 22
+      - name: Print message
+        run: echo "Deployment successfully  !"
